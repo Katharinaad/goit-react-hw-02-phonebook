@@ -48,13 +48,7 @@ export class App extends Component {
       >
         <h2>Phonebook</h2>
         <form onSubmit={this.handleSubmit}>
-          <label
-            style={{
-              display: 'flex',
-              gap: '10px',
-              marginBottom: '10px',
-            }}
-          >
+          <label>
             Name
             <input
               type="text"
@@ -67,7 +61,7 @@ export class App extends Component {
               required
             />
           </label>
-          <label style={{}}>Number</label>
+          <label>Number</label>
           <input
             type="tel"
             name="number"
@@ -80,7 +74,12 @@ export class App extends Component {
           />
           <button type="submit">Add contact</button>
         </form>
+
         <h2>Contacts</h2>
+        <label>
+          Find contacts by name
+          <input />
+        </label>
         <ul>
           {contacts.map(contact => (
             <li key={contact.id}>
