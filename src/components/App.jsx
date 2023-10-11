@@ -8,30 +8,32 @@ export class App extends Component {
     number: '',
   };
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
+  handleInputChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name } = this.state;
+    const { name, number } = this.state;
     console.log(`Signed up as: ${this.state.name}`);
 
     const newContact = {
       id: nanoid(),
       name,
+      number,
     };
 
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, newContact],
         name: '',
+        number: '',
       };
     });
   };
 
   render() {
-    const { contacts, name } = this.state;
+    const { contacts, name, number } = this.state;
     return (
       <div
         style={{
@@ -53,7 +55,7 @@ export class App extends Component {
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               value={name}
-              onChange={this.handleChange}
+              onChange={this.handleInputChange}
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
               placeholder="Enter a name"
               required
@@ -63,6 +65,8 @@ export class App extends Component {
           <input
             type="tel"
             name="number"
+            value={number}
+            onChange={this.handleInputChange}
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             placeholder="Enter a number"
@@ -73,7 +77,9 @@ export class App extends Component {
         <h2>Contacts</h2>
         <ul>
           {contacts.map(contact => (
-            <li key={contact.id}>{contact.name}</li>
+            <li key={contact.id}>
+              {contact.name}: {contact.number}
+            </li>
           ))}
         </ul>
       </div>
