@@ -41,11 +41,7 @@ export class App extends Component {
   render() {
     const { contacts, name, number } = this.state;
     return (
-      <div
-        style={{
-          maxWidth: '400px',
-        }}
-      >
+      <div className="container">
         <h2>Phonebook</h2>
         <form onSubmit={this.handleSubmit}>
           <label>
