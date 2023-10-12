@@ -39,7 +39,12 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts, name, number } = this.state;
+    const { contacts, name, number, filter } = this.state;
+
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
     return (
       <div className="container">
         <h2>Phonebook</h2>
@@ -74,10 +79,16 @@ export class App extends Component {
         <h2>Contacts</h2>
         <label>
           Find contacts by name
-          <input />
+          <input
+            type="text"
+            name="filter"
+            value={filter}
+            onChange={this.handleInputChange}
+            placeholder="Search..."
+          />
         </label>
         <ul>
-          {contacts.map(contact => (
+          {filteredContacts.map(contact => (
             <li key={contact.id}>
               {contact.name}: {contact.number}
             </li>
