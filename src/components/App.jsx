@@ -108,11 +108,21 @@ export class App extends Component {
         </label>
         <ul>
           {filteredContacts.map(contact => (
-            <div style={{}} key={contact.id}>
+            <div
+              style={{
+                display: 'flex',
+                gap: '20px',
+                alignItems: 'baseline',
+              }}
+              key={contact.id}
+            >
               <li>
                 {contact.name}: {contact.number}
               </li>
-              <button onClick={() => this.handleDelete(contact.id)}>
+              <button
+                className="buttonDelete"
+                onClick={() => this.handleDelete(contact.id)}
+              >
                 Delete
               </button>
             </div>
