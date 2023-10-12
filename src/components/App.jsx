@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -69,20 +70,11 @@ export class App extends Component {
 
     return (
       <div className="container">
-        <h2>Phonebook</h2>
+        <h1>Phonebook</h1>
         <ContactForm onSubmit={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        <label>
-          Find contacts by name
-          <input
-            type="text"
-            name="filter"
-            value={filter}
-            onChange={this.handleInputChange}
-            placeholder="Search..."
-          />
-        </label>
+        <Filter onChange={this.handleInputChange} />
         <ul>
           {filteredContacts.map(contact => (
             <div
