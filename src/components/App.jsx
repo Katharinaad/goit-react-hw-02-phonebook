@@ -18,9 +18,28 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
+  handleDelete = userId => {
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(user => user.id !== userId),
+      };
+    });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const { name, number } = this.state;
+
+    const isNameAlreadyExists = name => {
+      return this.state.contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      );
+    };
+
+    if (isNameAlreadyExists(name)) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
     console.log(`Signed up as: ${this.state.name}`);
 
     const newContact = {
@@ -89,9 +108,14 @@ export class App extends Component {
         </label>
         <ul>
           {filteredContacts.map(contact => (
-            <li key={contact.id}>
-              {contact.name}: {contact.number}
-            </li>
+            <div style={{}} key={contact.id}>
+              <li>
+                {contact.name}: {contact.number}
+              </li>
+              <button onClick={() => this.handleDelete(contact.id)}>
+                Delete
+              </button>
+            </div>
           ))}
         </ul>
       </div>
