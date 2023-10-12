@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import ContactForm from './ContactForm/ContactForm';
+import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
+import { ContactList } from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
@@ -75,28 +76,10 @@ export class App extends Component {
 
         <h2>Contacts</h2>
         <Filter onChange={this.handleInputChange} />
-        <ul>
-          {filteredContacts.map(contact => (
-            <div
-              style={{
-                display: 'flex',
-                gap: '20px',
-                alignItems: 'baseline',
-              }}
-              key={contact.id}
-            >
-              <li>
-                {contact.name}: {contact.number}
-              </li>
-              <button
-                className="buttonDelete"
-                onClick={() => this.handleDelete(contact.id)}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </ul>
+        <ContactList
+          filteredContacts={filteredContacts}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }
