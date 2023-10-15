@@ -30,8 +30,7 @@ export class App extends Component {
   // adding data to the state and getting data from the ContactForm component
   handleSubmit = data => {
     const { contacts } = this.state;
-    console.log(data);
-    console.log(`Signed up as: ${data.name}`);
+
     if (
       contacts.some(
         contact => contact.name.toLowerCase() === data.name.toLowerCase()
@@ -48,19 +47,6 @@ export class App extends Component {
       ],
     });
   };
-
-  // addContact = data => {
-  //   const newContact = {
-  //     ...data,
-  //     id: nanoid(),
-  //   };
-
-  //   this.setState(prevState => {
-  //     return {
-  //       contacts: [...prevState.contacts, newContact],
-  //     };
-  //   });
-  // };
 
   render() {
     const { contacts, filter } = this.state;
