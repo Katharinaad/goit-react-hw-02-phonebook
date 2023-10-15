@@ -2,7 +2,7 @@ import css from './ContactListItem.module.css';
 
 export function ContactListItem({ contact, handleDelete }) {
   return (
-    <div className={css.contactList}>
+    <>
       <li>
         {contact.name}: {contact.number}
       </li>
@@ -12,6 +12,6 @@ export function ContactListItem({ contact, handleDelete }) {
       >
         Delete
       </button>
-    </div>
+    </>
   );
 }
